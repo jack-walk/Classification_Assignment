@@ -38,10 +38,10 @@ main {
   max-width: 760px;
   margin: 0 auto;
   padding: 16px;
-  border: 2px solid #000000;
+  border: 2px solid #ffffff;
   border-radius: 8px;
-  background: #fed7aa;
-  color: #000000;
+  background: #000000;
+  color: #ffffff;
 }
 
 h1 {
@@ -71,7 +71,7 @@ input[type='text'] {
   border: 1px solid var(--border);
   border-radius: 6px;
   background: #ffffff;
-  color: var(--text);
+  color: #000000;
   font: inherit;
   flex: 1;
   min-width: 0;

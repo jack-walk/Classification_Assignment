@@ -72,16 +72,35 @@ After annotating all 50 videos, click the "Download CSV" button. Your file will 
 - `reviewer` - Your name
 - `note` - Any additional notes
 
-### 5. Run Intercoder Reliability Analysis
+### 5. Run Ollama AI Classification
 
-Once multiple annotators have completed classifications and saved their CSVs to `data/export/human/`, run the reliability analysis:
+After human annotators are finished, classify all videos using Ollama:
+```bash
+jupyter execute scripts/analysis/classification_ollama.ipynb
+```
+
+**Prerequisites:**
+- Ollama installed and running locally: `ollama serve`
+- Model pulled: `ollama pull qwen2.5:4b`
+
+This notebook will:
+- Load 50 videos from `data/import/clean/all-briefings.csv`
+- Call Ollama to classify each video for BabyDog presence
+- Generate `data/export/ai_cleaned-up/ollama.csv` with identical schema to human annotations
+- Output summary statistics (total videos, BabyDog count)
+
+### 6. Run Intercoder Reliability Analysis
+
+After human annotators and Ollama classification are complete, compare results:
 ```bash
 jupyter execute scripts/review/intercoder_reliability.ipynb
 ```
 
 This notebook will:
 - Load all annotator CSVs from `data/export/human/`
-- Calculate Cohen's Kappa and agreement percentages
+- Load Ollama classifications from `data/export/ai_cleaned-up/ollama.csv`
+- Calculate Cohen's Kappa between all pairs (human-human, human-Ollama)
+- Calculate overall agreement percentages
 - Identify videos with disagreement
 - Generate visualizations of agreement patterns
 - Save results to `data/export/intercoder_agreement.png`
@@ -92,18 +111,30 @@ This notebook will:
 ```
 data/import/clean/all-briefings.csv
   ├─ 50 press briefings
-  └─ Columns: URL, Title, Duration, Date
+  └─ Columns: video_id, title, date, youtube_link
 ```
 
-**Output (Annotated Results):**
+**Output (4 Annotated CSV Files):**
 ```
 data/export/
-├─ human/[USERNAME].csv          (Human annotations)
-│   └─ Columns: video_id, title, date, youtube_link, contains_babydog, interesting, reviewer, note
-└─ ai_cleaned-up/ollama.csv      (Ollama AI annotations, same schema)
+├─ human/
+│   ├─ [USERNAME1].csv           (Human annotator 1)
+│   ├─ [USERNAME2].csv           (Human annotator 2 - optional)
+│   └─ [etc].csv                 (Additional human annotators)
+├─ ai_cleaned-up/
+│   └─ ollama.csv                (Ollama AI-generated annotations)
+└─ intercoder_agreement.png      (Comparison visualization)
 ```
 
-The annotation tool loads from the baseline dataset and allows users to code each video, saving results to their personal file in `data/export/human/`.
+**All CSV files have identical schema:**
+- `video_id` - YouTube video ID
+- `title` - Press briefing title
+- `date` - Briefing date
+- `youtube_link` - Full YouTube URL
+- `contains_babydog` - Classification: "True", "False", or empty (skipped)
+- `interesting` - Flagged segments requiring attention
+- `reviewer` - Annotator name (human name or "Ollama")
+- `note` - Additional notes
 
 ## 📂 Project Structure
 
@@ -139,11 +170,12 @@ The annotation tool loads from the baseline dataset and allows users to code eac
 | Task | Command |
 |------|---------|
 | Activate environment | `source .venv/bin/activate` |
-| Run notebook (data prep) | `jupyter execute scripts/analysis/classification.ipynb` |
+| Prep baseline data | `jupyter execute scripts/analysis/classification.ipynb` |
 | Start annotation UI | `npm run dev` |
-| View annotations | Open `http://localhost:5173` |
-| Export results | Click "Download CSV" in browser |
-| Run analysis | `jupyter execute scripts/analysis/classification.ipynb` |
+| View UI in browser | Open `http://localhost:5173` |
+| Export human annotations | Click "Download CSV" in browser → save to `data/export/human/[NAME].csv` |
+| Run Ollama AI | `jupyter execute scripts/analysis/classification_ollama.ipynb` |
+| Compare annotations | `jupyter execute scripts/review/intercoder_reliability.ipynb` |
 
 ## 📊 Annotation Dataset
 
@@ -171,9 +203,35 @@ video_id,title,date,youtube_link
 
 Refer to [codebook.md](notes/codebook.md) for detailed annotation instructions and BabyDog identification criteria.
 
-## 🤖 AI Classification (Future)
+## 🤖 AI Classification with Ollama
 
-The annotation component is designed to work with both manual annotation and automated Ollama classification. The same interface can be used programmatically to run Ollama (qwen2.5:4b) through each video for automated classification that produces identical output format for reliability comparison.
+**Step 1: Set up Ollama locally**
+```bash
+brew install ollama           # macOS
+ollama serve                  # Start the Ollama server
+ollama pull qwen2.5:4b        # Download the qwen model
+```
+
+**Step 2: Run AI classification notebook**
+```bash
+jupyter execute scripts/analysis/classification_ollama.ipynb
+```
+
+This processes all 50 videos through Ollama and outputs to `data/export/ai_cleaned-up/ollama.csv`.
+
+## 📈 Reliability Analysis
+
+After running human annotations and Ollama classification, compare results:
+
+```bash
+jupyter execute scripts/review/intercoder_reliability.ipynb
+```
+
+Outputs:
+- **Cohen's Kappa** (κ) for all annotator pairs
+- **Agreement rates** between reviewers
+- **Disagreement analysis** showing which videos have split decisions
+- **Heatmaps & charts** in `data/export/intercoder_agreement.png`
 
 ---
 

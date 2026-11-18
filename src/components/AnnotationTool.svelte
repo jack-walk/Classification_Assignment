@@ -76,7 +76,19 @@
       rows.push(row);
     }
     const header = rows.shift();
-    return rows.map((r) => Object.fromEntries(header.map((h, j) => [h, r[j]])));
+    return rows.map((r) => {
+      const obj = Object.fromEntries(header.map((h, j) => [h, r[j]]));
+      // Extract video_id from URL if URL column exists but video_id doesn't
+      if (obj.URL && !obj.video_id) {
+        const match = obj.URL.match(/v=([^&]+)/);
+        obj.video_id = match ? match[1] : '';
+      }
+      // Map URL to youtube_link if needed
+      if (obj.URL && !obj.youtube_link) {
+        obj.youtube_link = obj.URL;
+      }
+      return obj;
+    });
   }
 
   function mulberry32(a) {
@@ -110,8 +122,13 @@
     const video = queue[currentIndex];
     labels.push({
       video_id: video.video_id,
-      contains_babydog_human: value,
-      reviewer: reviewer
+      title: video.Title || '',
+      date: video.Date || '',
+      youtube_link: video.youtube_link || video.URL || '',
+      contains_babydog: value,
+      interesting: '',
+      reviewer: reviewer,
+      note: ''
     });
     currentIndex++;
   }
@@ -151,7 +168,7 @@
   }
 
   $: currentVideo = queue[currentIndex];
-  $: progress = `${labels.length + 1} of ${queue.length}`;
+  $: progress = `${currentIndex + 1} of ${queue.length}`;
   $: isDone = currentIndex >= queue.length;
 </script>
 

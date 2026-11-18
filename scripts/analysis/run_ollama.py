@@ -69,7 +69,7 @@ for idx, row in df.iterrows():
         'contains_babydog': 'True' if contains_babydog else 'False',
         'interesting': '',
         'reviewer': 'Ollama',
-        'note': 'Transcript analysis'
+        'note': ''
     })
 
 print(f"\n✅ Analysis complete!")

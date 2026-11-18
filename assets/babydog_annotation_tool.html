@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BabyDog Annotation Tool</title>
+<link rel="stylesheet" href="babydog_annotation_tool.css">
+</head>
+<body>
+<main>
+  <h1>Seeing BabyDog?</h1>
+  <p class="muted">Watch the video. Does Gov. Justice's bulldog, BabyDog, appear in this briefing?</p>
+
+  <section id="setup">
+    <div class="row">
+      <input type="text" id="reviewer" placeholder="Your name" aria-label="Your name">
+      <button id="start">Start</button>
+    </div>
+    <p class="muted" id="status">Loading videos...</p>
+    <div class="row" id="file-row" hidden>
+      <label class="muted" for="file">Load CSV:</label>
+      <input type="file" id="file" accept=".csv">
+    </div>
+  </section>
+
+  <section id="labeler" hidden>
+    <p class="muted" id="progress"></p>
+    <div class="video"><iframe id="player" title="YouTube video" allow="encrypted-media" allowfullscreen></iframe></div>
+    <div class="info">
+      <div id="text"></div>
+      <p class="muted" id="date"></p>
+    </div>
+    <div class="row">
+      <button class="true" data-answer="True">Yes <kbd>y</kbd></button>
+      <button class="false" data-answer="False">No <kbd>n</kbd></button>
+      <button data-answer="">Skip <kbd>s</kbd></button>
+      <button id="undo">Undo <kbd>b</kbd></button>
+    </div>
+  </section>
+
+  <p id="done" hidden>All videos labeled! Download your results.</p>
+
+  <div class="row">
+    <button id="download">Download annotations (CSV)</button>
+  </div>
+</main>
+
+<script src="babydog_annotation_tool.js"></script>
+</body>
+</html>

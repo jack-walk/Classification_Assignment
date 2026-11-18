@@ -1,0 +1,61 @@
+📋 Loading baseline data...
+✅ Loaded 50 videos from /Users/jackwalker/Data/2026/CUNY_fall/Classification_Assignment/data/import/clean/all-briefings.csv
+🤖 Processing videos...
+
+[ 1/50] Gov. Justice visits Lost River State Park          🐕 Yes
+[ 2/50] Matewan Grade School - Do It For Babydog Round 3 G ✗ No
+[ 3/50] Gov. Justice announces GreenPower to manufacture a ✗ No
+[ 4/50] Gov. Justice announces addition of Greenbrier East 🐕 Yes
+[ 5/50] Corridor H Cheat River Bridge Bid Award Announceme 🐕 Yes
+[ 6/50] Gov Country Roads Take Me Home Book Reading        🐕 Yes
+[ 7/50] Gov. Justice Speaks at WVMEA                       🐕 Yes
+[ 8/50] Gov. Justice speaks at Salvation Army community ce 🐕 Yes
+[ 9/50] Gov. Justice delivers address on America's energy  ✗ No
+[10/50] Gov. Justice announces a major redevelopment proje 🐕 Yes
+[11/50] Gov. Justice attends James Monroe High School Mili 🐕 Yes
+[12/50] Gov. Justice hosts ribbon-cutting ceremony at Pipe 🐕 Yes
+[13/50] Gov  Justice joins Congressman McKinley to make ma 🐕 Yes
+[14/50] Gov. Justice tours flood damaged areas in Huntingt 🐕 Yes
+[15/50] Gov. Justice announces addition of Clay-Battelle M 🐕 Yes
+[16/50] Gov. Justice announces addition of Wheeling Park H 🐕 Yes
+[17/50] Gov. Justice holds briefing on COVID-19 response - ✗ No
+[18/50] Gov. Justice visits the Raleigh County Commission  ✗ No
+[19/50] Gov. Justice holds briefing on COVID-19 response - ✗ No
+[20/50] Gov. Justice holds briefing on COVID-19 response - ✗ No
+[21/50] Gov. Justice visits the West Virginia School of Os 🐕 Yes
+[22/50] Gov. Justice speaks at WVACO 2023 Conference of Co 🐕 Yes
+[23/50] Gov. Justice speaks at West Virginia Hospitality a 🐕 Yes
+[24/50] Gov. Justice reads Life by Cynthia Rylant and Bren 🐕 Yes
+[25/50] Gov. Justice Joins Leaders to Break Ground on Glob 🐕 Yes
+[26/50] Gov. Justice launches Shape Your Future Initiative 🐕 Yes
+[27/50] Gov. Justice announces the Get Paid to Pay it Forw ✗ No
+[28/50] Gov. Justice holds groundbreaking ceremony for sec 🐕 Yes
+[29/50] Gov. Justice attends ribbon cutting of new WV Dept 🐕 Yes
+[30/50] Gov. Justice attends groundbreaking for Niterra fa 🐕 Yes
+[31/50] Gov. Justice delivers $50 million to WVU Cancer In ✗ No
+[32/50] Gov. Justice: West Virginia shatters all-time fina ✗ No
+[33/50] Gov. Justice and First Lady Justice welcome Friend ✗ No
+[34/50] Gov. Justice visits areas hardest-hit by the flood 🐕 Yes
+[35/50] Governor Justice visits Ramage Elementary to appla 🐕 Yes
+[36/50] Gov. Justice delivers $1 million check to West Vir 🐕 Yes
+[37/50] Gov. Justice holds administration update briefing  🐕 Yes
+[38/50] Gov. Justice announces improvement project to alle ✗ No
+[39/50] Gov. Justice, School Building Authority approve $1 🐕 Yes
+[40/50] Gov. Justice visits Pipestem Resort State Park to  🐕 Yes
+[41/50] Gov. Justice, First Lady Cathy Justice speak at Co 🐕 Yes
+[42/50] Gov. Justice breaks ground on a new industry exhib 🐕 Yes
+[43/50] Gov. Justice announces date of upcoming Special Se ✗ No
+[44/50] Gov. Justice rings West Virginia Liberty Bell in r ✗ No
+[45/50] Gov. Justice congratulates North Central Airport f ✗ No
+[46/50] Gov. Justice signs Senate Bill 2033                🐕 Yes
+[47/50] Gov. Justice hosts grand opening ceremony for Nitr 🐕 Yes
+[48/50] Gov. Justice announces nearly $20 million surplus  ✗ No
+[49/50] Gov. Justice announces nearly $37 million surplus  🐕 Yes
+[50/50] Gov. Justice delivers final address to the West Vi 🐕 Yes
+
+✅ Analysis complete!
+💾 Saved 50 results to /Users/jackwalker/Data/2026/CUNY_fall/Classification_Assignment/data/export/ai_cleaned-up/ollama.csv
+
+📊 Summary:
+   Baby dog detected: 34
+   No baby dog: 16
